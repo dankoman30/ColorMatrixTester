@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
     private ImageView mSampleNotification;
     private Switch mInvertSwitch;
     private Switch mGrayscaleSwitch;
+    private Switch mExpertSwitch;
+    private TextView mHex;
     private TextView mA;
     private TextView mB;
     private TextView mC;
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView mR;
     private TextView mS;
     private TextView mT;
+    private Button mCreateButton;
     private Button mApplyButton;
     private Button mResetButton;
 
@@ -56,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
         mSampleNotification = (ImageView) findViewById(R.id.iv);
         mInvertSwitch = (Switch) findViewById(R.id.invert);
         mGrayscaleSwitch = (Switch) findViewById(R.id.grayscale);
+        mExpertSwitch = (Switch) findViewById(R.id.expert);
+        mHex = (TextView) findViewById(R.id.hex);
         mA = (TextView) findViewById(R.id.a);
         mB = (TextView) findViewById(R.id.b);
         mC = (TextView) findViewById(R.id.c);
@@ -78,8 +83,7 @@ public class MainActivity extends AppCompatActivity {
         mT = (TextView) findViewById(R.id.t);
         mApplyButton = (Button) findViewById(R.id.apply);
         mResetButton = (Button) findViewById(R.id.reset);
-
-        initialize();
+        mCreateButton = (Button) findViewById(R.id.create);
 
         mApplyButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -87,6 +91,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         mResetButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                initialize();
+            }
+        });
+        mCreateButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 initialize();
             }
@@ -105,11 +114,48 @@ public class MainActivity extends AppCompatActivity {
                 apply();
             }
         });
+
+        mExpertSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    expertMode(true);
+                } else {
+                    expertMode(false);
+                }
+            }
+        });
+
+        initialize();
+    }
+
+    private void expertMode(boolean isEnabled){
+        mA.setEnabled(isEnabled);
+        mB.setEnabled(isEnabled);
+        mC.setEnabled(isEnabled);
+        mD.setEnabled(isEnabled);
+        mE.setEnabled(isEnabled);
+        mF.setEnabled(isEnabled);
+        mG.setEnabled(isEnabled);
+        mH.setEnabled(isEnabled);
+        mI.setEnabled(isEnabled);
+        mJ.setEnabled(isEnabled);
+        mK.setEnabled(isEnabled);
+        mL.setEnabled(isEnabled);
+        mM.setEnabled(isEnabled);
+        mN.setEnabled(isEnabled);
+        mO.setEnabled(isEnabled);
+        mP.setEnabled(isEnabled);
+        mQ.setEnabled(isEnabled);
+        mR.setEnabled(isEnabled);
+        mS.setEnabled(isEnabled);
+        mT.setEnabled(isEnabled);
+        mApplyButton.setEnabled(isEnabled);
+        mHex.setEnabled(!isEnabled);
+        mCreateButton.setEnabled(!isEnabled);
     }
 
     private void initialize() {
-        mInvertSwitch.setChecked(true);
-        mGrayscaleSwitch.setChecked(true);
         mA.setText("1.0");
         mB.setText("0.0");
         mC.setText("0.0");
@@ -130,6 +176,9 @@ public class MainActivity extends AppCompatActivity {
         mR.setText("0.0");
         mS.setText("1.0");
         mT.setText("0.0");
+        mInvertSwitch.setChecked(true);
+        mGrayscaleSwitch.setChecked(true);
+        mExpertSwitch.setChecked(false);
 
         apply();
     }
