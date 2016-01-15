@@ -23,7 +23,7 @@
             android:id="@+id/iv"
             android:layout_gravity="center_horizontal|top"
             android:src="@drawable/sample_notification"
-            android:paddingTop="80dp" />
+            android:paddingTop="40dp" />
 
         <LinearLayout
             android:orientation="vertical"
@@ -33,50 +33,156 @@
             android:weightSum="1.0">
 
             <LinearLayout
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|right">
 
-                <Switch
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/invert"
-                    android:layout_gravity="center_vertical|right"
-                    android:paddingBottom="40dp"
-                    android:textOn="&lt;bool name=&quot;config_invert_colors_on_doze&quot;>true&lt;/bool> (default)"
-                    android:textOff="&lt;bool name=&quot;config_invert_colors_on_doze&quot;>false&lt;/bool>"
-                    android:text="Invert" />
+                    android:layout_height="match_parent">
 
-                <Switch
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Grayscale"
-                    android:id="@+id/grayscale"
-                    android:layout_gravity="center_vertical|right"
-                    android:paddingBottom="40dp"
-                    android:textOn="&lt;bool name=&quot;config_apply_grayscale_on_doze&quot;>true&lt;/bool> (default)"
-                    android:textOff="&lt;bool name=&quot;config_apply_grayscale_on_doze&quot;>false&lt;/bool>" />
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|right">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:text="RED: "
+                            android:id="@+id/textView"
+                            android:textColor="#ff0000" />
+
+                        <Button
+                            style="?android:attr/buttonStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="-"
+                            android:id="@+id/red_minus" />
+
+                        <Button
+                            style="?android:attr/buttonStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+"
+                            android:id="@+id/red_plus" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|right" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:text="GREEN: "
+                            android:id="@+id/textView2"
+                            android:textColor="#00ff00" />
+
+                        <Button
+                            style="?android:attr/buttonStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="-"
+                            android:id="@+id/green_minus" />
+
+                        <Button
+                            style="?android:attr/buttonStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+"
+                            android:id="@+id/green_plus" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|right" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:text="BLUE: "
+                            android:id="@+id/textView3"
+                            android:textColor="#0000ff" />
+
+                        <Button
+                            style="?android:attr/buttonStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="-"
+                            android:id="@+id/blue_minus" />
+
+                        <Button
+                            style="?android:attr/buttonStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+"
+                            android:id="@+id/blue_plus" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|right" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:text="ALPHA: "
+                            android:id="@+id/textView4" />
+
+                        <Button
+                            style="?android:attr/buttonStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="-"
+                            android:id="@+id/alpha_minus" />
+
+                        <Button
+                            style="?android:attr/buttonStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+"
+                            android:id="@+id/alpha_plus" />
+                    </LinearLayout>
+                </LinearLayout>
 
                 <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal">
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical">
 
-                    <TextView
+                    <Switch
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Hex color code:"
-                        android:id="@+id/textView" />
+                        android:id="@+id/invert"
+                        android:layout_gravity="center_vertical|right"
+                        android:textOn="&lt;bool name=&quot;config_invert_colors_on_doze&quot;>true&lt;/bool> (default)"
+                        android:textOff="&lt;bool name=&quot;config_invert_colors_on_doze&quot;>false&lt;/bool>"
+                        android:text="Invert" />
 
-                    <EditText
+                    <Switch
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/hex"
-                        android:layout_weight="1" />
-
+                        android:text="Grayscale"
+                        android:id="@+id/grayscale"
+                        android:layout_gravity="center_vertical|right"
+                        android:textOn="&lt;bool name=&quot;config_apply_grayscale_on_doze&quot;>true&lt;/bool> (default)"
+                        android:textOff="&lt;bool name=&quot;config_apply_grayscale_on_doze&quot;>false&lt;/bool>" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -88,12 +194,6 @@
                 android:layout_below="@+id/frameLayout"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal">
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Create matrix from hex"
-                    android:id="@+id/create" />
 
                 <Button
                     android:layout_width="wrap_content"
@@ -120,7 +220,8 @@
                         android:ems="10"
                         android:id="@+id/a"
                         android:layout_weight="1"
-                        android:enabled="false" />
+                        android:enabled="false"
+                        android:textColor="#ff0000" />
 
                     <EditText
                         android:layout_width="wrap_content"
@@ -181,7 +282,8 @@
                         android:ems="10"
                         android:id="@+id/g"
                         android:layout_weight="1"
-                        android:enabled="false" />
+                        android:enabled="false"
+                        android:textColor="#00ff00" />
 
                     <EditText
                         android:layout_width="wrap_content"
@@ -242,7 +344,8 @@
                         android:ems="10"
                         android:id="@+id/m"
                         android:layout_weight="1"
-                        android:enabled="false" />
+                        android:enabled="false"
+                        android:textColor="#0000ff" />
 
                     <EditText
                         android:layout_width="wrap_content"
@@ -303,7 +406,8 @@
                         android:ems="10"
                         android:id="@+id/s"
                         android:layout_weight="1"
-                        android:enabled="false" />
+                        android:enabled="false"
+                        android:textColor="#ffffff" />
 
                     <EditText
                         android:layout_width="wrap_content"

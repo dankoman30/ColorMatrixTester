@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
     private Switch mInvertSwitch;
     private Switch mGrayscaleSwitch;
     private Switch mExpertSwitch;
-    private TextView mHex;
     private TextView mA;
     private TextView mB;
     private TextView mC;
@@ -39,9 +38,16 @@ public class MainActivity extends AppCompatActivity {
     private TextView mR;
     private TextView mS;
     private TextView mT;
-    private Button mCreateButton;
     private Button mApplyButton;
     private Button mResetButton;
+    private Button mRedMinus;
+    private Button mGreenMinus;
+    private Button mBlueMinus;
+    private Button mAlphaMinus;
+    private Button mRedPlus;
+    private Button mGreenPlus;
+    private Button mBluePlus;
+    private Button mAlphaPlus;
 
     private boolean shouldInvert;
     private boolean shouldGrayscale;
@@ -50,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private ColorMatrix mMatrix = new ColorMatrix();
     private ColorMatrix mGrayscaleMatrix = new ColorMatrix();
 
+    private static double mIncrement = 0.05;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
         mInvertSwitch = (Switch) findViewById(R.id.invert);
         mGrayscaleSwitch = (Switch) findViewById(R.id.grayscale);
         mExpertSwitch = (Switch) findViewById(R.id.expert);
-        mHex = (TextView) findViewById(R.id.hex);
         mA = (TextView) findViewById(R.id.a);
         mB = (TextView) findViewById(R.id.b);
         mC = (TextView) findViewById(R.id.c);
@@ -83,7 +89,14 @@ public class MainActivity extends AppCompatActivity {
         mT = (TextView) findViewById(R.id.t);
         mApplyButton = (Button) findViewById(R.id.apply);
         mResetButton = (Button) findViewById(R.id.reset);
-        mCreateButton = (Button) findViewById(R.id.create);
+        mRedMinus = (Button) findViewById(R.id.red_minus);
+        mGreenMinus = (Button) findViewById(R.id.green_minus);
+        mBlueMinus = (Button) findViewById(R.id.blue_minus);
+        mAlphaMinus = (Button) findViewById(R.id.alpha_minus);
+        mRedPlus = (Button) findViewById(R.id.red_plus);
+        mGreenPlus = (Button) findViewById(R.id.green_plus);
+        mBluePlus = (Button) findViewById(R.id.blue_plus);
+        mAlphaPlus = (Button) findViewById(R.id.alpha_plus);
 
         mApplyButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -95,11 +108,58 @@ public class MainActivity extends AppCompatActivity {
                 initialize();
             }
         });
-        mCreateButton.setOnClickListener(new View.OnClickListener() {
+
+
+
+        mRedMinus.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                initialize();
+                adjustValue((-1) * mIncrement,mA);
+                apply();
             }
         });
+        mGreenMinus.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                adjustValue((-1) * mIncrement,mG);
+                apply();
+            }
+        });
+        mBlueMinus.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                adjustValue((-1) * mIncrement,mM);
+                apply();
+            }
+        });
+        mAlphaMinus.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                adjustValue((-1) * mIncrement,mS);
+                apply();
+            }
+        });
+        mRedPlus.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                adjustValue(mIncrement,mA);
+                apply();
+            }
+        });
+        mGreenPlus.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                adjustValue(mIncrement,mG);
+                apply();
+            }
+        });
+        mBluePlus.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                adjustValue(mIncrement,mM);
+                apply();
+            }
+        });
+        mAlphaPlus.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                adjustValue(mIncrement,mS);
+                apply();
+            }
+        });
+
 
         mInvertSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -151,8 +211,6 @@ public class MainActivity extends AppCompatActivity {
         mS.setEnabled(isEnabled);
         mT.setEnabled(isEnabled);
         mApplyButton.setEnabled(isEnabled);
-        mHex.setEnabled(!isEnabled);
-        mCreateButton.setEnabled(!isEnabled);
     }
 
     private void initialize() {
@@ -248,5 +306,19 @@ public class MainActivity extends AppCompatActivity {
 
         mSampleNotification.clearColorFilter();
         mSampleNotification.setColorFilter(new ColorMatrixColorFilter(mMatrix));
+    }
+
+    private void adjustValue(double increment,TextView textView){
+        double dOld;
+        String oldStr = textView.getText().toString();
+        if (oldStr.isEmpty()){
+            dOld = 0.0;
+        } else {
+            dOld = Double.parseDouble(textView.getText().toString());
+        }
+        double dNew = dOld + increment;
+        String newStr = String.format("%.2f", dNew);
+        textView.setText(newStr);
+
     }
 }
