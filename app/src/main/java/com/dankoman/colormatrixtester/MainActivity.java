@@ -11,6 +11,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -317,6 +318,15 @@ public class MainActivity extends AppCompatActivity {
             dOld = Double.parseDouble(textView.getText().toString());
         }
         double dNew = dOld + increment;
+        if (dNew < 0.0) {
+            dNew = 0.0;
+            Toast.makeText(getApplication(), "please choose a value greater than 0.0",
+                    Toast.LENGTH_SHORT).show();
+        } else if (dNew > 1.0) {
+            dNew = 1.0;
+            Toast.makeText(getApplication(), "please choose a value less than 1.0",
+                    Toast.LENGTH_SHORT).show();
+        }
         String newStr = String.format("%.2f", dNew);
         textView.setText(newStr);
 
