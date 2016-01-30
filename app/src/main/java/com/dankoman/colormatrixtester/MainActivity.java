@@ -303,7 +303,7 @@ public class MainActivity extends AppCompatActivity {
 
         // custom tint array gets applied here
         final ColorMatrix tint = new ColorMatrix(resolvedTint);
-        mMatrix.postConcat(tint);
+        mMatrix.preConcat(tint);
 
         mSampleNotification.clearColorFilter();
         mSampleNotification.setColorFilter(new ColorMatrixColorFilter(mMatrix));
